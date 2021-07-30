@@ -11,8 +11,7 @@ def CurrentTime():
 def UpdateWelcomeMessageTime():
     return f"""Welcome to RedditAPI - {CurrentTime()}\n
     - 0 = quit \n
-    - 1 = reddit.com \n
-    - 2 = reddit.com/r/redditdev/ \n
+    - 1 = reddit.com/r/all/.json?limit=5 \n
     enter url: \n"""
 
 # Keep requesting user input, perform tasks based on input and reloads module
@@ -23,13 +22,11 @@ def MainLoop():
     userInput = input(welcomeMessage)
 
     while userInput != "0":
-        if userInput == "1":
-            print("Requesting reddit.com...")
-            RedditAPIIHS.RequestGet("https://reddit.com/")
-        elif userInput == "2":
-            print("Requesting reddit.com/r/redditdev/...")
-            RedditAPIIHS.RequestGet("https://reddit.com/r/redditdev/")
+        if userInput == "1" or userInput == "reddit.com":
+            print("Requesting reddit.com/r/all/.json?limit=5...")
+            RedditAPIIHS.RequestGet("https://reddit.com/r/all/.json?limit=5")
         elif userInput == "":
+            #RedditAPIIHS.Testing()
             print("Reloading...")
         else:
             print(f"Requesting {userInput}...")
