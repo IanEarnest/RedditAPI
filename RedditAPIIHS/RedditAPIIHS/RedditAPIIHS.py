@@ -1,5 +1,14 @@
 import requests
 
-x = requests.get('https://reddit.com/r/redditdev/')
+def RequestGet(url):
+    # HTTPS check/ skip for URL
+    httpsStr = "https://"
+    if(url.startswith(httpsStr)):
+        pass
+    else:
+        url =  httpsStr + url
+        print(f"url modified to: {url}")
 
-print(x.text)
+    # HTTPS GET request
+    request = requests.get(url)
+    print(request.text)
